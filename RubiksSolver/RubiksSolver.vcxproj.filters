@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Algorithm">
+      <UniqueIdentifier>{036365a5-0f46-47ac-9856-8ccae5717058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithm\Beginner">
+      <UniqueIdentifier>{f284125c-2dca-49c2-b025-c58f31732ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Algorithm\CFOP">
+      <UniqueIdentifier>{be773e30-3f55-4f8f-b7ae-3739a12aadfc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubePrinter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeManager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveManager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BeginnerAlgo.c">
+      <Filter>Algorithm\Beginner</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CubePrinter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BeginnerAlgo.h">
+      <Filter>Algorithm\Beginner</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
