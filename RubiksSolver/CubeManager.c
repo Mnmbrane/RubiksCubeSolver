@@ -43,11 +43,12 @@ void assignFaceColor(SquareType square,
    }
 }
 
-bool mixCube(CubeType* outCube, int numMoves)
+MoveSetType mixCube(CubeType* outCube, int numMoves)
 {
-   if ( numMoves < 0 || outCube == NULL )
+   MoveSetType moveSet = { 0 };
+   if ( (numMoves < 0 && numMoves > MAX_MOVES) || outCube == NULL )
    {
-      return false;
+      return moveSet;
    }
    else
    {
@@ -58,8 +59,11 @@ bool mixCube(CubeType* outCube, int numMoves)
          MoveType randMove = { rand() % MAX_ORIENTATION, rand() % MAX_ROATATION };
 
          move(randMove, outCube);
+
+         moveSet.moves[i] = randMove;
+         moveSet.numMoves++;
       }
-      return true;
+      return moveSet;
    }
 }
 
