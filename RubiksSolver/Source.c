@@ -8,14 +8,15 @@
 
 int main()
 {
-   srand(time(0));
+   srand(0);
    CubeType rubiks;
-   MoveSetType moveSet = 
-   { { {ORIENTATION_BACK, ROTATION_NORMAL},
-       {ORIENTATION_BACK, ROTATION_PRIME},
-       {ORIENTATION_BACK, ROTATION_TWICE} }, 3 };
+   MoveSetType moveSet = { 0 };
 
    initialize(&rubiks);
+
+   mixCube(&rubiks, 20);
+
+   printCube(rubiks);
 
    solveCube(rubiks, &moveSet, ALGO_BEGINNER);
 

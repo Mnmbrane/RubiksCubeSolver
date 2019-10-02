@@ -5,7 +5,7 @@
 void initialize(CubeType* cube);
 
 // Mix up the cube
-void mixCube(CubeType* outCube);
+bool mixCube(CubeType* outCube, int numMoves);
 
 // Solve Cube
 void solveCube(CubeType cube, MoveSetType* outMoveSet, AlgorithmType algo);

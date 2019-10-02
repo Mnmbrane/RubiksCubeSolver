@@ -43,29 +43,23 @@ void assignFaceColor(SquareType square,
    }
 }
 
-void randomScramble(FaceType* outFace)
+bool mixCube(CubeType* outCube, int numMoves)
 {
-   int i, j;
-
-   // Loop through and assign a randome square type to
-   // the squares in each faces
-   for ( i = 0; i < SIDE_LENGTH; i++ )
+   if ( numMoves < 0 || outCube == NULL )
    {
-      for ( j = 0; j < SIDE_LENGTH; j++ )
-      {
-         outFace->squares[i][j] = rand() % MAX_SQUARE;
-      }
+      return false;
    }
-}
-
-void mixCube(CubeType* outCube)
-{
-   int i;
-
-   // call randomeFace on each face
-   for ( i = 0; i < MAX_ORIENTATION; i++ )
+   else
    {
-      randomScramble(&(outCube->faces[i]));
+      int i;
+      // call randomeFace on each face
+      for ( i = 0; i < numMoves; i++ )
+      {
+         MoveType randMove = { rand() % MAX_ORIENTATION, rand() % MAX_ROATATION };
+
+         move(randMove, outCube);
+      }
+      return true;
    }
 }
 

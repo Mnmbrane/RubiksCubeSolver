@@ -5,6 +5,14 @@
 #define MAX_ADJ_ORIENTATION 4
 #define MAX_POSSIBLE_MOVETYPES (MAX_ORIENTATION * MAX_ROATATION)
 
+#define NULL ((void*)0)
+
+typedef enum
+{
+   false = 0,
+   true = 1
+} bool;
+
 // Color for each square
 typedef enum
 {
