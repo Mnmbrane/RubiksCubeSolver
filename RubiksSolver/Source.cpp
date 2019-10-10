@@ -10,7 +10,7 @@ int main()
 {
    srand(0);
    CubeType rubiks;
-   MoveSetType moveSet = { 0 };
+   MoveSetType moveSet = { };
 
    initialize(&rubiks);
 
@@ -18,6 +18,6 @@ int main()
 
    printCube(rubiks);
 
-   solveCube(rubiks, &moveSet, ALGO_BEGINNER);
+   //solveCube(&rubiks, ALGO_BEGINNER);
 
 }

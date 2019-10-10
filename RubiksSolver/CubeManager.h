@@ -2,10 +2,12 @@
 #include "Common.h"
 
 // Assign color to each face
-void initialize(CubeType* cube);
+void initialize(CubeType*);
 
 // Mix up the cube
-bool mixCube(CubeType* outCube, int numMoves);
+MoveSetType mixCube(CubeType*, int);
 
 // Solve Cube
-void solveCube(CubeType cube, MoveSetType* outMoveSet, AlgorithmType algo);
+MoveSetType solveCube(CubeType*, AlgorithmType);
+
+FaceType* getFace(CubeType*, OrientationType);

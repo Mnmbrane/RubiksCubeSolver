@@ -24,20 +24,26 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CubePrinter.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CubeManager.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MoveManager.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BeginnerAlgo.c">
+    <ClCompile Include="BeginnerAlgo.cpp">
       <Filter>Algorithm\Beginner</Filter>
+    </ClCompile>
+    <ClCompile Include="RubiksAlgorithmInterface.cpp">
+      <Filter>Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeUtility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubePrinter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeManager.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +61,12 @@
     </ClInclude>
     <ClInclude Include="BeginnerAlgo.h">
       <Filter>Algorithm\Beginner</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeUtility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RubiksAlgorithmInterface.h">
+      <Filter>Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

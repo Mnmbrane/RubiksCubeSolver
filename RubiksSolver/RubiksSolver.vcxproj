@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <CompileAs>CompileAsC</CompileAs>
+      <CompileAs>CompileAsCpp</CompileAs>
       <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -117,18 +117,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BeginnerAlgo.c" />
-    <ClCompile Include="CubeManager.c" />
-    <ClCompile Include="CubePrinter.c" />
-    <ClCompile Include="MoveManager.c" />
-    <ClCompile Include="Source.c" />
+    <ClCompile Include="BeginnerAlgo.cpp" />
+    <ClCompile Include="CubeManager.cpp" />
+    <ClCompile Include="CubePrinter.cpp" />
+    <ClCompile Include="CubeUtility.cpp" />
+    <ClCompile Include="MoveManager.cpp" />
+    <ClCompile Include="RubiksAlgorithmInterface.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BeginnerAlgo.h" />
     <ClInclude Include="Common.h" />
     <ClInclude Include="CubeManager.h" />
     <ClInclude Include="CubePrinter.h" />
+    <ClInclude Include="CubeUtility.h" />
     <ClInclude Include="MoveManager.h" />
+    <ClInclude Include="RubiksAlgorithmInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

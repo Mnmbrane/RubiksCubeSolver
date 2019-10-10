@@ -12,8 +12,6 @@ typedef enum
    SQUARE_GROUP_RIGHT_COL
 } SquareGroupType;
 
-// Function pointer for each move
-FuncMovePtr funcMove[MAX_ORIENTATION];
 
 void top(RotationType, CubeType*);
 void down(RotationType, CubeType*);
@@ -112,7 +110,6 @@ void getSquareGroup(FaceType* face,
    SquareGroupType squareGroup,
    SquareType* outSquares[SIDE_LENGTH])
 {
-   int i;
    switch ( squareGroup )
    {
    case SQUARE_GROUP_TOP_ROW:
