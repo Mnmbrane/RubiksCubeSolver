@@ -10,9 +10,7 @@ MoveSetType solveTopEdges();
 MoveSetType permutateCorners();
 MoveSetType orientCorners();
 
-CubeType cube = { };
-
-MoveSetType beginnerSolve(CubeType inCube)
+MoveSetType BeginnerAlgorithm::solve(CubeType* inCube)
 {
    MoveSetType moveset = { };
    cube = inCube;

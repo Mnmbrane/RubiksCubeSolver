@@ -2,72 +2,74 @@
 #include "MoveManager.h"
 #include "BeginnerAlgo.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-void assignFaceColor(SquareType, FaceType*);
-
-void initialize(CubeType* outCube)
+void CubeManager::initialize()
 {
+   cube = new CubeType();
+
    // Assign an entire face only one square type
 
    // Top is yellow
-   assignFaceColor(SQUARE_YELLOW, getFace(outCube, ORIENTATION_TOP));
+   assignFaceColor(SQUARE_YELLOW, ORIENTATION_TOP);
 
    // Bottom is white
-   assignFaceColor(SQUARE_WHITE, getFace(outCube, ORIENTATION_DOWN));
+   assignFaceColor(SQUARE_WHITE, ORIENTATION_DOWN);
 
    // Left is red
-   assignFaceColor(SQUARE_RED, getFace(outCube, ORIENTATION_LEFT));
+   assignFaceColor(SQUARE_RED, ORIENTATION_LEFT);
 
    // Right is Orange
-   assignFaceColor(SQUARE_ORANGE, getFace(outCube, ORIENTATION_RIGHT));
+   assignFaceColor(SQUARE_ORANGE, ORIENTATION_RIGHT);
 
    // Front is Green
-   assignFaceColor(SQUARE_GREEN, getFace(outCube, ORIENTATION_FRONT));
+   assignFaceColor(SQUARE_GREEN, ORIENTATION_FRONT);
 
    // Back is Blue
-   assignFaceColor(SQUARE_BLUE, getFace(outCube, ORIENTATION_BACK));
+   assignFaceColor(SQUARE_BLUE,  ORIENTATION_BACK);
 }
 
-void assignFaceColor(SquareType square, FaceType* outFace)
+void CubeManager::assignFaceColor( SquareType square, OrientationType orientation )
 {
-   int i, j;
-
    // Loop through and assign a square type to an entire face
-   for ( i = 0; i < SIDE_LENGTH; i++ )
+   for ( int i = 0; i < SIDE_LENGTH; i++ )
    {
-      for ( j = 0; j < SIDE_LENGTH; j++ )
+      for ( int j = 0; j < SIDE_LENGTH; j++ )
       {
-         outFace->squares[i][j] = square;
+         cube->faces[orientation].squares[i][j] = square;
       }
    }
 }
 
-FaceType* getFace(CubeType* cube, OrientationType orientation)
-{
-   return &(cube->faces[orientation]);
-}
-
-MoveSetType mixCube(CubeType* outCube, int numMoves)
+MoveSetType CubeManager::mixCube( int numMoves )
 {
    MoveSetType retMoveSet = { };
-   if ( (numMoves < 0 && numMoves > MAX_MOVES) || outCube == NULL )
+   if ( (numMoves < 0 && numMoves > MAX_MOVES) || cube == nullptr )
+   {  
+      printf("Number of moves must be between 0 and %d\n", MAX_MOVES);
+      return retMoveSet;
+   }
+   else if ( cube == nullptr )
    {
+      printf("Cube must be initialized line(%d)\n", __LINE__);
       return retMoveSet;
    }
    else
    {
-      int i;
       // call randomeFace on each face
-      for ( i = 0; i < numMoves; i++ )
+      for ( int i = 0; i < numMoves; i++ )
       {
+         // Make a random move
          MoveType randMove = 
          { 
             (OrientationType) (rand() % MAX_ORIENTATION),
             (RotationType)    (rand() % MAX_ROATATION)
          };
 
-         move(randMove, outCube);
+         // Move the cube
+         move(randMove, cube);
 
+         // Save randome move to a set
          retMoveSet.moves[i] = randMove;
          retMoveSet.numMoves++;
       }
@@ -75,18 +77,12 @@ MoveSetType mixCube(CubeType* outCube, int numMoves)
    }
 }
 
-MoveSetType solveCube(CubeType cube, AlgorithmType algo)
+MoveSetType CubeManager::solveCube( RubiksAlgorithmInterface algo )
 {
    MoveSetType retMoveSet = { };
-   switch ( algo )
-   {
-   case ALGO_BEGINNER:
-      retMoveSet = beginnerSolve(cube);
-      break;
-   case ALGO_CFOP:
-      break;
-   default:
-      break;
-   }
+
+  retMoveSet = algo.solve(cube);
+
    return retMoveSet;
 }
+

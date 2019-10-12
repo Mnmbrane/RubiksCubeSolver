@@ -12,12 +12,6 @@ int main()
    CubeType rubiks;
    MoveSetType moveSet = { };
 
-   initialize(&rubiks);
-
-   mixCube(&rubiks, 20);
-
-   printCube(rubiks);
-
    //solveCube(&rubiks, ALGO_BEGINNER);
 
 }

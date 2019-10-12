@@ -1,12 +1,11 @@
 #pragma once
 #include "Common.h"
+#include "RubiksAlgorithmInterface.h"
 
 
-class BeginnerAlgorithm
+class BeginnerAlgorithm : public RubiksAlgorithmInterface
 {
 public:
-
+   MoveSetType solve(CubeType* cube);
 private:
-
 };
-MoveSetType beginnerSolve(CubeType cube);

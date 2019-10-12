@@ -1,13 +1,27 @@
 #pragma once
 #include "Common.h"
+#include "RubiksAlgorithmInterface.h"
 
-// Assign color to each face
-void initialize(CubeType*);
+class CubeManager
+{
+public:
+   // Assign color to each face
+   void initialize();
 
-// Mix up the cube
-MoveSetType mixCube(CubeType*, int);
+   // Mix up the cube
+   MoveSetType mixCube(int);
 
-// Solve Cube
-MoveSetType solveCube(CubeType*, AlgorithmType);
+   // Solve Cube
+   MoveSetType solveCube(RubiksAlgorithmInterface);
 
-FaceType* getFace(CubeType*, OrientationType);
+   // Get Cube
+   CubeType getCube();
+
+
+private:
+
+   void assignFaceColor(SquareType, OrientationType);
+
+   CubeType* cube;
+};
+
