@@ -8,7 +8,7 @@
 
 int main()
 {
-   printf("Hello World!\n");
+   printf("Hello World! \n");
    //srand(0);
    //CubeType rubiks;
    //MoveSetType moveSet = { };
