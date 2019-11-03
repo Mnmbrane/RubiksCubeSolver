@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void CubeManager::initialize()
+CubeManager::CubeManager() :
+   moveManager(cube)
 {
-   cube = new CubeType();
 
    // Assign an entire face only one square type
 
@@ -27,6 +27,11 @@ void CubeManager::initialize()
 
    // Back is Blue
    assignFaceColor(SQUARE_BLUE,  ORIENTATION_BACK);
+}
+
+CubeManager::~CubeManager()
+{
+
 }
 
 void CubeManager::assignFaceColor( SquareType square, OrientationType orientation )

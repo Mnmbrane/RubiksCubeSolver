@@ -5,8 +5,8 @@
 class CubeManager
 {
 public:
-   // Assign color to each face
-   void initialize();
+   CubeManager();
+   ~CubeManager();
 
    // Mix up the cube
    MoveSetType mixCube(int);
@@ -22,6 +22,8 @@ private:
 
    void assignFaceColor(SquareType, OrientationType);
 
-   CubeType* cube;
+   CubeType cube;
+
+   MoveManager moveManager;
 };
 

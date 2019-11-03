@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef void(*FuncMovePtr)(RotationType, CubeType*);
 
 typedef enum
 {
@@ -12,28 +11,69 @@ typedef enum
    SQUARE_GROUP_RIGHT_COL
 } SquareGroupType;
 
+MoveManager::MoveManager(CubeType& inCube) :
+   cube(inCube)
+{ }
 
-void top(RotationType, CubeType*);
-void down(RotationType, CubeType*);
-void left(RotationType, CubeType*);
-void right(RotationType, CubeType*);
-void front(RotationType, CubeType*);
-void back(RotationType, CubeType*);
-
-
-// Function pointer for each move
-// The order here needs to match that of the MoveType
-FuncMovePtr funcMove[MAX_ORIENTATION] = {  top,
-                                           down,
-                                           left,
-                                           right,
-                                           front,
-                                           back, };
-// Rotate a face Clockwise
-void rotate(RotationType rotation, FaceType* outFace)
+MoveManager::~MoveManager()
 {
-   FaceType rotatedFace;
-   int i, j;
+
+}
+
+void MoveManager::rotateNormal(OrientationType orientation)
+{
+   FaceType tempFace;
+   
+   // Rotate the entire face
+   for ( int j = SIDE_LENGTH - 1; j >= 0; j-- )
+   {
+      for ( int i = 0; i < SIDE_LENGTH; i++ )
+      {
+         tempFace.squares[i][j] = cube.faces[orientation].squares[(SIDE_LENGTH - 1) - j][i];
+      }
+   }
+   memcpy(cube.faces[orientation].squares,
+          tempFace.squares,
+          sizeof(cube.faces[orientation].squares));
+}
+
+void MoveManager::rotatePrime(OrientationType orientation)
+{
+   FaceType tempFace;
+   
+   // Rotate the entire face
+   for ( int j = SIDE_LENGTH - 1; j >= 0; j-- )
+   {
+      for ( int i = 0; i < SIDE_LENGTH; i++ )
+      {
+         tempFace.squares[i][j] = cube.faces[orientation].squares[j][(SIDE_LENGTH - 1) - i];
+      }
+   }
+   memcpy(cube.faces[orientation].squares,
+          tempFace.squares,
+          sizeof(cube.faces[orientation].squares));
+}
+void MoveManager::rotateTwice(OrientationType orientation)
+{
+   FaceType tempFace;
+   
+   // Rotate the entire face
+   for ( int j = SIDE_LENGTH - 1; j >= 0; j-- )
+   {
+      for ( int i = 0; i < SIDE_LENGTH; i++ )
+      {
+         tempFace.squares[i][j] = cube.faces[orientation].squares[(SIDE_LENGTH - 1) - i][(SIDE_LENGTH - 1) - j];
+      }
+   }
+   memcpy(cube.faces[orientation].squares,
+          tempFace.squares,
+          sizeof(cube.faces[orientation].squares));
+}
+
+// Rotate a face Clockwise
+void MoveManager::rotate(RotationType rotation, OrientationType orientation)
+{
+   FaceType tempFace;
 
    switch ( rotation )
    {
@@ -41,43 +81,24 @@ void rotate(RotationType rotation, FaceType* outFace)
       printf("ROTATING FACE NORMALLY\n");
 
       // Rotate the entire face
-      for ( j = SIDE_LENGTH - 1; j >= 0; j-- )
-      {
-         for ( i = 0; i < SIDE_LENGTH; i++ )
-         {
-            rotatedFace.squares[i][j] = outFace->squares[(SIDE_LENGTH - 1) - j][i];
-         }
-      }
+      rotateNormal(orientation);
 
       break;
    case ROTATION_PRIME:
       printf("ROTATING FACE PRIME\n");
 
-      for ( j = SIDE_LENGTH - 1; j >= 0; j-- )
-      {
-         for ( i = 0; i < SIDE_LENGTH; i++ )
-         {
-            rotatedFace.squares[i][j] = outFace->squares[j][(SIDE_LENGTH - 1) - i];
-         }
-      }
+      rotatePrime(orientation);
       break;
    case ROTATION_TWICE:
       printf("ROTATING FACE TWICE\n");
 
-      for ( j = SIDE_LENGTH - 1; j >= 0; j-- )
-      {
-         for ( i = 0; i < SIDE_LENGTH; i++ )
-         {
-            rotatedFace.squares[i][j] = outFace->squares[(SIDE_LENGTH - 1) - i][(SIDE_LENGTH - 1) - j];
-         }
-      }
+      rotateTwice(orientation);
       break;
    default:
       printf("ROTATION ERROR\n");
       break;
    }
    
-   memcpy(outFace->squares, rotatedFace.squares, sizeof(outFace->squares));
 }
 
 // Switch 2 groups of squares
@@ -142,7 +163,7 @@ void getSquareGroup(FaceType* face,
 }
 
 //// FUNCTION CALLBACKS
-void top(RotationType rotation, CubeType* outCube)
+void MoveManager::top(RotationType rotation)
 {
    // Adjacent squares
    SquareType* topFront[SIDE_LENGTH];
@@ -165,7 +186,7 @@ void top(RotationType rotation, CubeType* outCube)
       topLeft);
 
    // Rotate a face
-   rotate(rotation, &(outCube->faces[ORIENTATION_TOP]));
+   rotate(rotation, ORIENTATION_TOP);
 
    switch ( rotation )
    {
@@ -190,7 +211,7 @@ void top(RotationType rotation, CubeType* outCube)
 
 }
 
-void down(RotationType rotation, CubeType* outCube)
+void MoveManager::down(RotationType rotation)
 {
    // Adjacent squares
    SquareType* downFront[SIDE_LENGTH];
@@ -213,7 +234,7 @@ void down(RotationType rotation, CubeType* outCube)
       downLeft);
 
    // Rotate a face
-   rotate(rotation, &(outCube->faces[ORIENTATION_DOWN]));
+   rotate(rotation, ORIENTATION_DOWN);
 
    switch ( rotation )
    {
@@ -238,7 +259,7 @@ void down(RotationType rotation, CubeType* outCube)
 }
 
 
-void left(RotationType rotation, CubeType* outCube)
+void MoveManager::left(RotationType rotation)
 {
    // Adjacent squares
    SquareType* leftFront[SIDE_LENGTH];
@@ -261,7 +282,7 @@ void left(RotationType rotation, CubeType* outCube)
       leftDown);
 
    // Rotate a face
-   rotate(rotation, &(outCube->faces[ORIENTATION_LEFT]));
+   rotate(rotation, ORIENTATION_LEFT);
 
    switch ( rotation )
    {
@@ -285,7 +306,7 @@ void left(RotationType rotation, CubeType* outCube)
    }
 }
 
-void right(RotationType rotation, CubeType* outCube)
+void MoveManager::right(RotationType rotation)
 {
    // Adjacent squares
    SquareType* rightFront[SIDE_LENGTH];
@@ -308,7 +329,7 @@ void right(RotationType rotation, CubeType* outCube)
       rightDown);
 
    // Rotate a face
-   rotate(rotation, &(outCube->faces[ORIENTATION_RIGHT]));
+   rotate(rotation, ORIENTATION_RIGHT);
 
    switch ( rotation )
    {
@@ -332,7 +353,7 @@ void right(RotationType rotation, CubeType* outCube)
    }
 }
 
-void front(RotationType rotation, CubeType* outCube)
+void MoveManager::front(RotationType rotation)
 {
    // Adjacent squares
    SquareType* frontRight[SIDE_LENGTH];
@@ -355,7 +376,7 @@ void front(RotationType rotation, CubeType* outCube)
       frontDown);
 
    // Rotate a face
-   rotate(rotation, &(outCube->faces[ORIENTATION_FRONT]));
+   rotate(rotation, ORIENTATION_FRONT);
 
    switch ( rotation )
    {
@@ -379,7 +400,7 @@ void front(RotationType rotation, CubeType* outCube)
    }
 }
 
-void back(RotationType rotation, CubeType* outCube)
+void MoveManager::back(RotationType rotation)
 {
    // Adjacent squares
    SquareType* backRight[SIDE_LENGTH];
@@ -402,7 +423,7 @@ void back(RotationType rotation, CubeType* outCube)
       backDown);
 
    // Rotate a face
-   rotate(rotation, &(outCube->faces[ORIENTATION_BACK]));
+   rotate(rotation, ORIENTATION_BACK);
 
    switch ( rotation )
    {
