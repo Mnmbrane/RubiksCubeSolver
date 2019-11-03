@@ -6,6 +6,14 @@
 #define MAX_ADJ_ORIENTATION 4
 #define MAX_POSSIBLE_MOVETYPES (MAX_ORIENTATION * MAX_ROATATION)
 
+typedef enum
+{
+   SQUARE_GROUP_TOP_ROW,
+   SQUARE_GROUP_BOTTOM_ROW,
+   SQUARE_GROUP_LEFT_COL,
+   SQUARE_GROUP_RIGHT_COL
+} SquareGroupType;
+
 // Color for each square
 typedef enum
 {

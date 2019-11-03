@@ -18,10 +18,5 @@ private:
    void front(RotationType);
    void back(RotationType);
 
-   void rotate(RotationType, OrientationType);
-   void rotateNormal(OrientationType);
-   void rotatePrime(OrientationType);
-   void rotateTwice(OrientationType);
-
    CubeType& cube;
 };

@@ -1,15 +1,7 @@
 #include "MoveManager.h"
+#include "Rotate.h"
 #include <stdio.h>
 #include <string.h>
-
-
-typedef enum
-{
-   SQUARE_GROUP_TOP_ROW,
-   SQUARE_GROUP_BOTTOM_ROW,
-   SQUARE_GROUP_LEFT_COL,
-   SQUARE_GROUP_RIGHT_COL
-} SquareGroupType;
 
 MoveManager::MoveManager(CubeType& inCube) :
    cube(inCube)
@@ -18,87 +10,6 @@ MoveManager::MoveManager(CubeType& inCube) :
 MoveManager::~MoveManager()
 {
 
-}
-
-void MoveManager::rotateNormal(OrientationType orientation)
-{
-   FaceType tempFace;
-   
-   // Rotate the entire face
-   for ( int j = SIDE_LENGTH - 1; j >= 0; j-- )
-   {
-      for ( int i = 0; i < SIDE_LENGTH; i++ )
-      {
-         tempFace.squares[i][j] = cube.faces[orientation].squares[(SIDE_LENGTH - 1) - j][i];
-      }
-   }
-   memcpy(cube.faces[orientation].squares,
-          tempFace.squares,
-          sizeof(cube.faces[orientation].squares));
-}
-
-void MoveManager::rotatePrime(OrientationType orientation)
-{
-   FaceType tempFace;
-   
-   // Rotate the entire face
-   for ( int j = SIDE_LENGTH - 1; j >= 0; j-- )
-   {
-      for ( int i = 0; i < SIDE_LENGTH; i++ )
-      {
-         tempFace.squares[i][j] = cube.faces[orientation].squares[j][(SIDE_LENGTH - 1) - i];
-      }
-   }
-   memcpy(cube.faces[orientation].squares,
-          tempFace.squares,
-          sizeof(cube.faces[orientation].squares));
-}
-void MoveManager::rotateTwice(OrientationType orientation)
-{
-   FaceType tempFace;
-   
-   // Rotate the entire face
-   for ( int j = SIDE_LENGTH - 1; j >= 0; j-- )
-   {
-      for ( int i = 0; i < SIDE_LENGTH; i++ )
-      {
-         tempFace.squares[i][j] = cube.faces[orientation].squares[(SIDE_LENGTH - 1) - i][(SIDE_LENGTH - 1) - j];
-      }
-   }
-   memcpy(cube.faces[orientation].squares,
-          tempFace.squares,
-          sizeof(cube.faces[orientation].squares));
-}
-
-// Rotate a face Clockwise
-void MoveManager::rotate(RotationType rotation, OrientationType orientation)
-{
-   FaceType tempFace;
-
-   switch ( rotation )
-   {
-   case ROTATION_NORMAL:
-      printf("ROTATING FACE NORMALLY\n");
-
-      // Rotate the entire face
-      rotateNormal(orientation);
-
-      break;
-   case ROTATION_PRIME:
-      printf("ROTATING FACE PRIME\n");
-
-      rotatePrime(orientation);
-      break;
-   case ROTATION_TWICE:
-      printf("ROTATING FACE TWICE\n");
-
-      rotateTwice(orientation);
-      break;
-   default:
-      printf("ROTATION ERROR\n");
-      break;
-   }
-   
 }
 
 // Switch 2 groups of squares

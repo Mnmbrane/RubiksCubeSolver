@@ -1,11 +1,26 @@
+EXE = source
 CXX=g++
-CXXFLAGS= -std=c++11 -o
 
-Source: Source.o
-	$(CXX) $(CXXFLAGS) Source Source.o
+SRC_DIR = src
+OBJ_DIR = obj
 
-Source.o: Source.cpp
-	$(CXX) -c Source.cpp
+SRC = Rotate.cpp
+OBJ = Rotate.o
+
+CPPFLAGS += -Iinclude
+CFLAGS += -Wall
+LDFLAGS += -Llib
+LDLIBS += -lm
+
+.PHONY: all clean
+
+all: $(EXE)
+
+$(EXE): $(OBJ)
+	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+$(OBJ): $(SRC_DIR)/$(SRC)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm *.o
+	$(RM) $(OBJ)
