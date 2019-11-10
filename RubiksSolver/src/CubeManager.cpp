@@ -49,7 +49,7 @@ void CubeManager::assignFaceColor( SquareType square, OrientationType orientatio
 MoveSetType CubeManager::mixCube( int numMoves )
 {
    MoveSetType retMoveSet = { };
-   if ( (numMoves < 0 && numMoves > MAX_MOVES) || cube == nullptr )
+   if ( (numMoves < 0 && numMoves > MAX_MOVES) )
    {  
       printf("Number of moves must be between 0 and %d\n", MAX_MOVES);
       return retMoveSet;
