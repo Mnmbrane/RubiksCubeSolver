@@ -1,13 +1,18 @@
 #pragma once
 
-#include "rapidjson.h"
+#include "rapidjson/rapidjson.h"
+#include <functional>
 
 class RCSIO
 {
 public:
-RCSIO();
+RCSIO(std::function<void(int)>);
 ~RCSIO();
 
-private:
+void readCubeConfigJson(char*);
 
+void solveCube();
+
+private:
+std::function<void(int)> Callback;
 };
