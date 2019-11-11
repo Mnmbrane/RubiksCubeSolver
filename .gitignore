@@ -93,6 +93,7 @@ StyleCopReport.xml
 *.svclog
 *.scc
 *.o
+*.a
 
 # Chutzpah Test files
 _Chutzpah*
@@ -352,5 +353,3 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-RubiksSolver/Source
-RubiksSolver/Source.o

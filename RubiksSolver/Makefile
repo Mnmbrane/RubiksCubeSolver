@@ -1,26 +1,37 @@
-EXE = source
-CXX=g++
+CXX						= gcc
+STANDARD_FLAGS			= -std=c++11
+WARN_AS_ERRORS_FLAGS	= -pedantic-errors\
+								-Wall\
+								-Wextra\
+								-Werror\
+                       -Wconversion
+DEBUG_FLAGS          = -g3
+OPT_FLAGS            = -O0
+NO_LINKER_FLAGS      = -c
+CPPFLAGS             = $(OPT_FLAGS) $(NO_LINKER_FLAGS) $(STANDARD_FLAGS) \
+                       $(WARN_AS_ERRORS_FLAGS)
 
-SRC_DIR = src
-OBJ_DIR = obj
+VPATH = src
+# Source files, headers, etc.:
+ROOT = $(CURDIR)
+INCLUDES = -I$(ROOT)/include -I$(ROOT)/third_party
 
-SRC = Rotate.cpp
-OBJ = Rotate.o
+SRCS = ./src/RCSIO.cpp
 
-CPPFLAGS += -Iinclude
-CFLAGS += -Wall
-LDFLAGS += -Llib
-LDLIBS += -lm
+OBJS = RCSIO.o
 
-.PHONY: all clean
+LIB_DIR = ./lib
+MAIN = libRubiksCubeSolver.a # static library
 
-all: $(EXE)
+.PHONY: all
+all: $(MAIN)
+	mv $(MAIN) $(LIB_DIR)/$(MAIN)
 
-$(EXE): $(OBJ)
-	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
+$(MAIN): $(OBJS)
+	ar -r $(MAIN) $(OBJS)
 
-$(OBJ): $(SRC_DIR)/$(SRC)
-	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+.cpp.o:
+	$(CXX) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
 
-clean:
-	$(RM) $(OBJ)
+depend: $(SRCS)
+	makedepend $(INCLUDES) $^

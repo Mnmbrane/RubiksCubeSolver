@@ -1,0 +1,32 @@
+{
+   "version": "2.0.0",
+   "windows": {
+     "options": {
+       "shell": {
+         "executable": "bash.exe",
+         "args": ["-c"]
+       }
+     }
+   },
+   "tasks": [
+     {
+       "label": "build Rubiks Solver",
+       "type": "shell",
+       "command": "g++",
+       "args": [
+         "-g",
+         "-I",
+         "./RubiksSolver/include/",
+         "./RubiksSolver/third_party/",
+         "-o",
+         "./RubiksSolver/bin/Source.o",
+         "./RubiksSolver/src/Source.cpp",
+         "./RubiksSolver/src/RCSIO.cpp"
+       ],
+       "group": {
+         "kind": "build",
+         "isDefault": true
+       }
+     }
+   ]
+ }

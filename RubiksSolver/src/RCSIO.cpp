@@ -8,6 +8,8 @@ using namespace rapidjson;
 RCSIO::RCSIO(std::function<void(int)> inCallback)
 {
    Callback = inCallback;
+
+   Callback(3);
 }
 RCSIO::~RCSIO()
 {
