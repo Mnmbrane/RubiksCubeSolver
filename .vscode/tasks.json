@@ -1,32 +1,47 @@
 {
    "version": "2.0.0",
    "windows": {
-     "options": {
-       "shell": {
-         "executable": "bash.exe",
-         "args": ["-c"]
-       }
-     }
+      "options": {
+         "shell": {
+            "executable": "bash.exe",
+            "args": [
+               "-c"
+            ]
+         }
+      }
    },
    "tasks": [
-     {
-       "label": "build Rubiks Solver",
-       "type": "shell",
-       "command": "g++",
-       "args": [
-         "-g",
-         "-I",
-         "./RubiksSolver/include/",
-         "./RubiksSolver/third_party/",
-         "-o",
-         "./RubiksSolver/bin/Source.o",
-         "./RubiksSolver/src/Source.cpp",
-         "./RubiksSolver/src/RCSIO.cpp"
-       ],
-       "group": {
-         "kind": "build",
-         "isDefault": true
-       }
-     }
+      {
+         "label": "build all",
+         "type": "shell",
+         "command": "make all",
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         }
+      },
+      {
+         "label": "clean all",
+         "type": "shell",
+         "command": "make clean",
+         "group": {
+            "kind": "build",
+            "isDefault": true
+         }
+      },
+      {
+         "type": "shell",
+         "label": "gcc build active file",
+         "command": "/usr/bin/gcc",
+         "args": [
+            "-g",
+            "${file}",
+            "-o",
+            "${fileDirname}/${fileBasenameNoExtension}"
+         ],
+         "options": {
+            "cwd": "/usr/bin"
+         }
+      }
    ]
- }
+}

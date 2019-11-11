@@ -4,7 +4,7 @@ WARN_AS_ERRORS_FLAGS	= -pedantic-errors\
 								-Wall\
 								-Wextra\
 								-Werror\
-                       -Wconversion
+								-Wconversion
 DEBUG_FLAGS          = -g3
 OPT_FLAGS            = -O0
 NO_LINKER_FLAGS      = -c
@@ -32,6 +32,3 @@ $(MAIN): $(OBJS)
 
 .cpp.o:
 	$(CXX) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
-
-depend: $(SRCS)
-	makedepend $(INCLUDES) $^

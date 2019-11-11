@@ -16,6 +16,7 @@ int main()
    printf("Hello World! \n");
 
    RCSIO rcsio(funcCallback);
+   funcCallback(4);
    //srand(0);
    //CubeType rubiks;
    //MoveSetType moveSet = { };

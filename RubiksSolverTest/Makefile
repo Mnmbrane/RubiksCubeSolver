@@ -24,7 +24,7 @@ LIBS = -lRubiksCubeSolver
 all: $(OBJS)
 
 .cpp.o:
-	$(CXX) $(CPPFLAGS) $(INCLUDES) $< -o $@ $(LIB_DIR) $(LIBS) -lstdc++
+	$(CXX) $(CPPFLAGS) $(DEBUG_FLAGS) $(INCLUDES) $< -o $@ $(LIB_DIR) $(LIBS) -lstdc++
 
 .PHONY: depend
 depend: $(SRCS)
