@@ -5,7 +5,7 @@ WARN_AS_ERRORS_FLAGS	= -pedantic-errors\
 								-Wextra\
 								-Werror\
 								-Wconversion
-DEBUG_FLAGS          = -g3
+DEBUG_FLAGS          = -ggdb
 CPPFLAGS             = $(STANDARD_FLAGS) $(WARN_AS_ERRORS_FLAGS)
 
 VPATH = ./
