@@ -18,15 +18,15 @@ OBJS = Source.o
 
 LIB_DIR = -L./lib
 
-LIBS = -lRubiksCubeSolver
+LIBS =	-lRubiksCubeSolver \
+			-lgtest \
+			-lgtest_main \
+			-lstdc++ \
+			-lpthread
 
 .PHONY: all
 all: $(OBJS)
 
 .cpp.o:
-	$(CXX) $(CPPFLAGS) $(DEBUG_FLAGS) $(INCLUDES) $< -o $@ $(LIB_DIR) $(LIBS) -lstdc++
-
-.PHONY: depend
-depend: $(SRCS)
-	makedepend $(INCLUDES) $^
+	$(CXX) $(CPPFLAGS) $(DEBUG_FLAGS) $(INCLUDES) $< -o $@ $(LIB_DIR) $(LIBS)
 

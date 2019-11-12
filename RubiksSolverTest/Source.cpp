@@ -1,27 +1,34 @@
 #include <stdio.h>
 #include "RCSIO.h"
+#include <gtest/gtest.h>
 
-//#include "Common.h"
-//#include "CubePrinter.h"
-//#include "CubeManager.h"
-//#include "MoveManager.h"
-
-void funcCallback(unsigned int x)
+struct BankAccount
 {
-   printf("Num is %u\n", x);
+   int balance;
+
+   BankAccount()
+   {
+
+   }
+
+   explicit BankAccount(const int balance)
+      : balance(balance)
+   {
+   }
+};
+
+TEST(AccountTest, BankAccountStartsEmpty)
+{
+   BankAccount account(0);
+   EXPECT_EQ(0, account.balance);
 }
 
-int main()
+int main(int argc, char* argv[])
 {
    printf("Hello World! \n");
 
-   RCSIO rcsio(funcCallback);
-   funcCallback(4);
-   //srand(0);
-   //CubeType rubiks;
-   //MoveSetType moveSet = { };
+   testing::InitGoogleTest(&argc, argv);
 
-   //solveCube(&rubiks, ALGO_BEGINNER);
-   return 0;
+   return RUN_ALL_TESTS();
 
 }
