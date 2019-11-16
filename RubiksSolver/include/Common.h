@@ -14,19 +14,6 @@ typedef enum
    SQUARE_GROUP_RIGHT_COL
 } SquareGroupType;
 
-// Color for each square
-typedef enum
-{
-   SQUARE_WHITE,
-   SQUARE_YELLOW,
-   SQUARE_RED,
-   SQUARE_ORANGE,
-   SQUARE_GREEN,
-   SQUARE_BLUE,
-
-   MAX_SQUARE
-} SquareType;
-
 typedef enum
 {
    ORIENTATION_TOP,
@@ -66,15 +53,5 @@ typedef struct
    int numMoves;
 } MoveSetType;
 
-typedef struct
-{
-   SquareType squares[SIDE_LENGTH][SIDE_LENGTH];
-} FaceType;
-
-
-typedef struct
-{
-   FaceType faces[MAX_ORIENTATION];
-} CubeType;
 
 #endif

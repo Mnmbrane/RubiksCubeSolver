@@ -1,8 +1,9 @@
 #pragma once
 
 #include "Common.h"
+#include "Cube.h"
 
-class Rotate
+class Cube3x3 : public Cube
 {
 public:
    typedef enum
@@ -14,13 +15,14 @@ public:
       MAX_ROATATION
    } RotationType;
    
-   Rotate();
-   ~Rotate();
+   Cube3x3();
+   ~Cube3x3();
    void rotate(RotationType, OrientationType);
 private:
+
    void rotateNormal(OrientationType);
    void rotatePrime(OrientationType);
    void rotateTwice(OrientationType);
    void transpose();
-   CubeType& cube;
+   
 };

@@ -1,4 +1,4 @@
-#include "Rotate.h"
+#include "Cube3x3.h"
 #include <string.h>
 
 void Rotate::rotateNormal(OrientationType orientation)

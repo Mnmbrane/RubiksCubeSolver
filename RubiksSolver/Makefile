@@ -16,7 +16,9 @@ VPATH = src
 ROOT = $(CURDIR)
 INCLUDES = -I$(ROOT)/include -I$(ROOT)/third_party
 
-SRCS = ./src/RCSIO.cpp
+SRCS =	./src/RCSIO.cpp \
+			./src/CubeFace.cpp \
+			./src/Cube.cpp
 
 OBJS = RCSIO.o
 
@@ -32,3 +34,7 @@ $(MAIN): $(OBJS)
 
 .cpp.o:
 	$(CXX) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
+
+.PHONY: clean
+clean:
+	rm -rf ./lib/*

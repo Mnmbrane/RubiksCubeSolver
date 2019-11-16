@@ -5,6 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/RubiksSolver/include/**",
+                "${workspaceFolder}/RubiksSolver/include/CubeTypes/**",
                 "${workspaceFolder}/RubiksSolver/third_party/**"
             ],
             "defines": [
