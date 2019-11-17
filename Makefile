@@ -1,13 +1,11 @@
-ROOT = $(CURDIR)
-PROJECT = $(ROOT)/RubiksSolver
-TEST_PROJECT = $(ROOT)/RubiksSolverTest
+include MakeInclude
 
 .PHONY: all
 all:
-	(cd $(PROJECT); make all)
-	(cd $(TEST_PROJECT); cp $(PROJECT)/lib/* $(TEST_PROJECT)/lib; make all)
+	(cd $(PROJECT); make all )
+	(cd $(TEST_PROJECT); make all)
 
 .PHONY: clean
 clean:
-	rm -rf $(PROJECT)/*.o
-	rm -rf $(TEST_PROJECT)/*.o
+	(cd $(PROJECT); make clean)
+	(cd $(TEST_PROJECT); make clean)

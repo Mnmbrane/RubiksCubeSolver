@@ -1,22 +1,21 @@
-CXX						= gcc
-STANDARD_FLAGS			= -std=c++11
-WARN_AS_ERRORS_FLAGS	= -pedantic-errors\
-								-Wall\
-								-Wextra\
-								-Werror\
-								-Wconversion
+include ../MakeInclude
+
 DEBUG_FLAGS          = -ggdb
-CPPFLAGS             = $(STANDARD_FLAGS) $(WARN_AS_ERRORS_FLAGS)
+CPPFLAGS             = $(STANDARD_FLAGS) $(WARN_AS_ERRORS_FLAGS) $(DEBUG_FLAGS)
 
 VPATH = ./
 
-INCLUDES=-Iinclude -Ithird_party
+INCLUDES=	-I./../$(PROJECT)/include \
+				-I./../$(PROJECT)/include/CubeTypes \
+				-I./../$(PROJECT)/third_party \
+				-Iinclude
 
-SRCS = Source.cpp
+SRCS = TestDriver.cpp
 
-OBJS = Source.o
+OBJS = TestDriver.o
 
-LIB_DIR = -L./lib
+LIB_DIR =	-L./lib \
+				-L./../$(PROJECT)/lib
 
 LIBS =	-lRubiksCubeSolver \
 			-lgtest \
@@ -28,5 +27,8 @@ LIBS =	-lRubiksCubeSolver \
 all: $(OBJS)
 
 .cpp.o:
-	$(CXX) $(CPPFLAGS) $(DEBUG_FLAGS) $(INCLUDES) $< -o $@ $(LIB_DIR) $(LIBS)
+	$(CXX) $(CPPFLAGS) $(INCLUDES) $< -o $@ $(LIB_DIR) $(LIBS)
 
+.PHONY: clean
+clean:
+	rm -rf *.o

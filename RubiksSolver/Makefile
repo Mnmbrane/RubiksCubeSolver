@@ -1,26 +1,24 @@
-CXX						= gcc
-STANDARD_FLAGS			= -std=c++11
-WARN_AS_ERRORS_FLAGS	= -pedantic-errors\
-								-Wall\
-								-Wextra\
-								-Werror\
-								-Wconversion
-DEBUG_FLAGS          = -g3
+include ../MakeInclude
 OPT_FLAGS            = -O0
 NO_LINKER_FLAGS      = -c
 CPPFLAGS             = $(OPT_FLAGS) $(NO_LINKER_FLAGS) $(STANDARD_FLAGS) \
-                       $(WARN_AS_ERRORS_FLAGS)
+                       $(WARN_AS_ERRORS_FLAGS) $(DEBUG_FLAGS)
 
-VPATH = src
+VPATH =	src \
+			src/CubeTypes
+
 # Source files, headers, etc.:
-ROOT = $(CURDIR)
-INCLUDES = -I$(ROOT)/include -I$(ROOT)/third_party
+INCLUDES =	-Iinclude \
+				-Iinclude/CubeTypes \
+				-Ithird_party
 
 SRCS =	./src/RCSIO.cpp \
-			./src/CubeFace.cpp \
-			./src/Cube.cpp
+			./src/CubeTypes/CubeFace.cpp \
+			./src/CubeTypes/Cube.cpp
 
-OBJS = RCSIO.o
+OBJS =	RCSIO.o \
+			CubeFace.o \
+			Cube.o
 
 LIB_DIR = ./lib
 MAIN = libRubiksCubeSolver.a # static library
@@ -28,6 +26,7 @@ MAIN = libRubiksCubeSolver.a # static library
 .PHONY: all
 all: $(MAIN)
 	mv $(MAIN) $(LIB_DIR)/$(MAIN)
+	rm -rf *.o
 
 $(MAIN): $(OBJS)
 	ar -r $(MAIN) $(OBJS)
@@ -37,4 +36,4 @@ $(MAIN): $(OBJS)
 
 .PHONY: clean
 clean:
-	rm -rf ./lib/*
+	rm -rf $(LIB_DIR)/*.a *.o

@@ -21,6 +21,8 @@ CubeFace();
 CubeFace(int, SquareType);
 ~CubeFace();
 
+SquareType** getFace() const;
+
 private:
 void initFaceColor(SquareType);
 

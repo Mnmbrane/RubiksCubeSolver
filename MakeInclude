@@ -1,0 +1,11 @@
+PROJECT = RubiksSolver
+TEST_PROJECT = RubiksSolverTest
+
+CXX                  =  gcc
+STANDARD_FLAGS       =  -std=c++11
+WARN_AS_ERRORS_FLAGS =  -pedantic-errors\
+                        -Wall\
+                        -Wextra\
+                        -Werror\
+                        -Wconversion
+DEBUG_FLAGS          =  -ggdb

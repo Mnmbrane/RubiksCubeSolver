@@ -8,7 +8,7 @@
          "name": "gcc build and debug active file",
          "type": "cppdbg",
          "request": "launch",
-         "program": "${workspaceRoot}/RubiksSolverTest/Source.o",
+         "program": "${workspaceRoot}/RubiksSolverTest/TestDriver.o",
          "args": [],
          "stopAtEntry": false,
          "cwd": "${workspaceFolder}",

@@ -31,6 +31,11 @@ CubeFace::~CubeFace()
    delete[] cubeFace;
 }
 
+SquareType** CubeFace::getFace() const
+{
+   return cubeFace;
+}
+
 void CubeFace::initFaceColor(SquareType initColor)
 {
    for(int i = 0; i < maxSideLength; ++i)

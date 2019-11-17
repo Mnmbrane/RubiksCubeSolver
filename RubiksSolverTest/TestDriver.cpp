@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "RCSIO.h"
+#include "Cube.h"
 #include <gtest/gtest.h>
 
 struct BankAccount
@@ -26,6 +27,23 @@ TEST(AccountTest, BankAccountStartsEmpty)
 int main(int argc, char* argv[])
 {
    printf("Hello World! \n");
+
+   Cube cube(3);
+
+   CubeFace cubeFace = cube.getFace(ORIENTATION_BACK);
+   SquareType** face = cubeFace.getFace();
+
+   SquareType testFace[3][3];
+
+   for(int i = 0; i < 3; i++)
+   {
+      for(int j = 0; j < 3; j++)
+      {
+         testFace[i][j] = face[i][j];
+         printf("%d ", testFace[i][j]);
+      }
+      printf("\n");
+   }
 
    testing::InitGoogleTest(&argc, argv);
 

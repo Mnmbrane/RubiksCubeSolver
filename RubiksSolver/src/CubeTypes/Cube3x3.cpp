@@ -1,7 +1,7 @@
 #include "Cube3x3.h"
 #include <string.h>
 
-void Rotate::rotateNormal(OrientationType orientation)
+void Cube3x3::rotateNormal(OrientationType orientation)
 {
    FaceType tempFace;
    
@@ -18,7 +18,7 @@ void Rotate::rotateNormal(OrientationType orientation)
           sizeof(cube.faces[orientation].squares));
 }
 
-void Rotate::rotatePrime(OrientationType orientation)
+void Cube3x3::rotatePrime(OrientationType orientation)
 {
    FaceType tempFace;
    
@@ -34,7 +34,7 @@ void Rotate::rotatePrime(OrientationType orientation)
           tempFace.squares,
           sizeof(cube.faces[orientation].squares));
 }
-void Rotate::rotateTwice(OrientationType orientation)
+void Cube3x3::rotateTwice(OrientationType orientation)
 {
    FaceType tempFace;
    
@@ -52,7 +52,7 @@ void Rotate::rotateTwice(OrientationType orientation)
 }
 
 // Rotate a face Clockwise
-void Rotate::rotate(RotationType rotation, OrientationType orientation)
+void Cube3x3::rotate(RotationType rotation, OrientationType orientation)
 {
    FaceType tempFace;
 
