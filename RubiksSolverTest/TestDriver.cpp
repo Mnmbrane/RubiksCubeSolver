@@ -2,27 +2,25 @@
 #include "RCSIO.h"
 #include "CubeTest.h"
 #include <gtest/gtest.h>
+#include <fstream>
 
+using namespace std;
+
+void solveCallback(int num)
+{
+   printf("%d\n", num);
+}
 int main(int argc, char* argv[])
 {
-   printf("Hello World! \n");
+   ifstream configFile("RubiksSolverTest/JsonCubeConfigs/example.json");
 
-   Cube cube(3);
+   printf("Starting Rubiks Cube Test \n");
 
-   CubeFace cubeFace = cube.getFace(ORIENTATION_BACK);
-   SquareType** face = cubeFace.getFace();
+   RCSIO rcsio(solveCallback);
 
-   SquareType testFace[3][3];
+   rcsio.readCubeConfigJson(configFile);
 
-   for(int i = 0; i < 3; i++)
-   {
-      for(int j = 0; j < 3; j++)
-      {
-         testFace[i][j] = face[i][j];
-         printf("%d ", testFace[i][j]);
-      }
-      printf("\n");
-   }
+   configFile.close();
 
    testing::InitGoogleTest(&argc, argv);
 

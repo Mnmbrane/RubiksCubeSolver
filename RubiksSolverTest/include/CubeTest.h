@@ -3,7 +3,8 @@
 #include <gtest/gtest.h>
 #include "Cube.h"
 
-class CubeTest : public ::testing::TestWithParam<T>
+// int is just a placeholder type
+class CubeTest : public ::testing::TestWithParam<int>
 {
 protected:
    Cube cube;
