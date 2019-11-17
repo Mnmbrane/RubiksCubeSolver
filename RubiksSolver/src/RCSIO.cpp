@@ -12,27 +12,42 @@ RCSIO::~RCSIO()
 {
 
 }
-void RCSIO::readCubeFaces(rapidjson::Document& cubeConfig)
+
+void RCSIO::readCubeFace(const rapidjson::Value& allFaceConfig, const char* member)
+{
+   assert(allFaceConfig.HasMember(member));
+   const rapidjson::Value& faceConfig = allFaceConfig[member];
+   assert(faceConfig.IsArray());
+
+   for (rapidjson::SizeType i = 0; i < faceConfig.Size(); i++)
+   {
+      printf("%s[%d] = %s\n", member, i, faceConfig[i].GetString());
+   }
+}
+
+void RCSIO::readCubeAllFaces(rapidjson::Document& cubeConfig)
 {
    assert(cubeConfig.HasMember("FaceConfig"));
    const rapidjson::Value& faceConfig = cubeConfig["FaceConfig"];
 
-   assert(faceConfig.HasMember("top"));
-   assert(faceConfig.HasMember("down"));
-   assert(faceConfig.HasMember("left"));
-   assert(faceConfig.HasMember("right"));
-   assert(faceConfig.HasMember("front"));
-   assert(faceConfig.HasMember("back"));
+   readCubeFace(faceConfig, "top");
+   readCubeFace(faceConfig, "down");
+   readCubeFace(faceConfig, "left");
+   readCubeFace(faceConfig, "right");
+   readCubeFace(faceConfig, "front");
+   readCubeFace(faceConfig, "back");
 }
 
 void RCSIO::readCubeAlgorithm(rapidjson::Document& cubeConfig)
 {
-   assert(cubeConfig.HasMember("algorithm"));
-   const rapidjson::Value& algorithmJson = cubeConfig["algorithm"];
+   assert(cubeConfig.HasMember("Algorithm"));
+   const rapidjson::Value& algorithmJson = cubeConfig["Algorithm"];
 
    assert(algorithmJson.IsString());
 
    printf("%s\n", algorithmJson.GetString());
+
+   
 }
 
 void RCSIO::readCubeConfigJson(std::ifstream& configJson)
@@ -43,7 +58,7 @@ void RCSIO::readCubeConfigJson(std::ifstream& configJson)
    configDoc.ParseStream(configJsonStreamWrapper);
 
    // Read Cube Config
-   readCubeFaces(configDoc);
+   readCubeAllFaces(configDoc);
 
    // Read Algorithm
    readCubeAlgorithm(configDoc);

@@ -4,7 +4,6 @@
 #include <fstream>
 #include <rapidjson/document.h>
 
-
 class RCSIO
 {
 public:
@@ -16,7 +15,8 @@ void readCubeConfigJson(std::ifstream&);
 void solveCube();
 
 private:
-void readCubeFaces(rapidjson::Document&);
+void readCubeFace(const rapidjson::Value&, const char*);
+void readCubeAllFaces(rapidjson::Document&);
 void readCubeAlgorithm(rapidjson::Document&);
 std::function<void(int)> Callback;
 };
