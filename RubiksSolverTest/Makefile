@@ -23,6 +23,10 @@ LIBS =	-lRubiksCubeSolver \
 			-lstdc++ \
 			-lpthread
 
+.PHONY testall:
+testAll: $(OBJS)
+	$(CXX) $(CXXFLAGS) $(INCS) -o testAll $(SRCS) $(OBJS)
+
 .PHONY: all
 all: $(OBJS)
 

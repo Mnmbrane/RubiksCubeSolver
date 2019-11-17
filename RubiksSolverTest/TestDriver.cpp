@@ -1,28 +1,7 @@
 #include <stdio.h>
 #include "RCSIO.h"
-#include "Cube.h"
+#include "CubeTest.h"
 #include <gtest/gtest.h>
-
-struct BankAccount
-{
-   int balance;
-
-   BankAccount()
-   {
-
-   }
-
-   explicit BankAccount(const int balance)
-      : balance(balance)
-   {
-   }
-};
-
-TEST(AccountTest, BankAccountStartsEmpty)
-{
-   BankAccount account(0);
-   EXPECT_EQ(0, account.balance);
-}
 
 int main(int argc, char* argv[])
 {
