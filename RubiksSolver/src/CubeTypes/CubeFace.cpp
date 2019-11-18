@@ -31,9 +31,16 @@ CubeFace::~CubeFace()
    delete[] cubeFace;
 }
 
-SquareType** CubeFace::getFace() const
+SquareType CubeFace::getSquare(int row, int col)
 {
-   return cubeFace;
+   return cubeFace[row][col];
+}
+
+void CubeFace::setSquare(SquareType square,
+                         int row,
+                         int col)
+{
+   cubeFace[row][col] = square;
 }
 
 void CubeFace::initFaceColor(SquareType initColor)

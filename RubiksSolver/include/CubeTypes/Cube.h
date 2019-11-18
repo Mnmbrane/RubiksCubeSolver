@@ -22,6 +22,9 @@ Cube(const int);
 ~Cube();
 
 virtual CubeFace getFace(OrientationType) const;
+virtual void setSquare(OrientationType,
+                       SquareType,
+                       int, int);
 
 
 private:

@@ -18,6 +18,14 @@ Cube::~Cube()
    delete[] cubeFace;
 }
 
+void Cube::setSquare(OrientationType orientiation,
+                     SquareType square,
+                     int row,
+                     int col)
+{
+   cubeFace[orientiation].setSquare(square, row, col);
+}
+
 CubeFace Cube::getFace(OrientationType orientation) const
 {
    return cubeFace[orientation];

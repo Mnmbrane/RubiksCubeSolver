@@ -17,7 +17,9 @@ void solveCube();
 
 private:
 int readCubeSideLength(rapidjson::Document&);
-void readCubeFace(const rapidjson::Value&, const char*);
+void readCubeFace(const rapidjson::Value&,
+                  const char*,
+                  OrientationType);
 void readCubeAllFaces(rapidjson::Document&);
 void readCubeAlgorithm(rapidjson::Document&);
 std::function<void(int)> Callback;
