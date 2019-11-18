@@ -1,6 +1,6 @@
 #include "Cube.h"
 
-Cube::Cube(int maxSideLength)
+Cube::Cube(const int maxSideLength)
 {
    cubeFace = new CubeFace[MAX_ORIENTATION]
    {

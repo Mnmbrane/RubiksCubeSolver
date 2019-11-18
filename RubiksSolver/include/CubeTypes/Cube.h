@@ -18,7 +18,7 @@ typedef enum
 class Cube
 {
 public:
-Cube(int);
+Cube(const int);
 ~Cube();
 
 virtual CubeFace getFace(OrientationType) const;

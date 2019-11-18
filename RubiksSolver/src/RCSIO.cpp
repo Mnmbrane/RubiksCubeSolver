@@ -5,9 +5,9 @@
 RCSIO::RCSIO(std::function<void(int)> inCallback)
 {
    Callback = inCallback;
-
    Callback(3);
 }
+
 RCSIO::~RCSIO()
 {
 
@@ -56,6 +56,8 @@ void RCSIO::readCubeConfigJson(std::ifstream& configJson)
    // Translate JSON to Cube Config
    rapidjson::Document configDoc;
    configDoc.ParseStream(configJsonStreamWrapper);
+
+   // Read Cube Side Length
 
    // Read Cube Config
    readCubeAllFaces(configDoc);
