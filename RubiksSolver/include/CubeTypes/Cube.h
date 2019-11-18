@@ -19,7 +19,7 @@ class Cube
 {
 public:
 Cube(const int);
-~Cube();
+virtual ~Cube();
 
 virtual CubeFace getFace(OrientationType) const;
 virtual void setSquare(OrientationType,

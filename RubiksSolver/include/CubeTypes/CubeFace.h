@@ -3,6 +3,7 @@
 // Color for each square
 typedef enum
 {
+   SQUARE_INVALID = -1,
    SQUARE_WHITE,
    SQUARE_YELLOW,
    SQUARE_RED,

@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <fstream>
+#include <string>
 #include <rapidjson/document.h>
 #include "Cube.h"
 
@@ -16,13 +17,15 @@ void readCubeConfigJson(std::ifstream&);
 void solveCube();
 
 private:
-int readCubeSideLength(rapidjson::Document&);
+SquareType getSquareFromString(std::string);
+void readCubeSideLength(rapidjson::Document&);
 void readCubeFace(const rapidjson::Value&,
                   const char*,
                   OrientationType);
 void readCubeAllFaces(rapidjson::Document&);
 void readCubeAlgorithm(rapidjson::Document&);
-std::function<void(int)> Callback;
 
+std::function<void(int)> Callback;
 Cube* cube;
+unsigned int cubeSideLength;
 };
