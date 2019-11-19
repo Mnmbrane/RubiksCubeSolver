@@ -1,93 +1,36 @@
 #include "CubeManager.h"
-#include "MoveManager.h"
-#include "BeginnerAlgo.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-CubeManager::CubeManager() :
-   moveManager(cube)
+CubeManager::CubeManager()
 {
-
-   // Assign an entire face only one square type
-
-   // Top is yellow
-   assignFaceColor(SQUARE_YELLOW, ORIENTATION_TOP);
-
-   // Bottom is white
-   assignFaceColor(SQUARE_WHITE, ORIENTATION_DOWN);
-
-   // Left is red
-   assignFaceColor(SQUARE_RED, ORIENTATION_LEFT);
-
-   // Right is Orange
-   assignFaceColor(SQUARE_ORANGE, ORIENTATION_RIGHT);
-
-   // Front is Green
-   assignFaceColor(SQUARE_GREEN, ORIENTATION_FRONT);
-
-   // Back is Blue
-   assignFaceColor(SQUARE_BLUE,  ORIENTATION_BACK);
+   cube = new Cube(DEFAULT_SIDE_LENGTH);
 }
 
 CubeManager::~CubeManager()
 {
-
+   delete cube;
+   cube = nullptr;
 }
 
-void CubeManager::assignFaceColor( SquareType square, OrientationType orientation )
+void CubeManager::SetSideLength(int sideLength)
 {
-   // Loop through and assign a square type to an entire face
-   for ( int i = 0; i < SIDE_LENGTH; i++ )
+   if(sideLength != DEFAULT_SIDE_LENGTH)
    {
-      for ( int j = 0; j < SIDE_LENGTH; j++ )
-      {
-         cube->faces[orientation].squares[i][j] = square;
-      }
-   }
-}
+      // Destroy cube
+      delete cube;
 
-MoveSetType CubeManager::mixCube( int numMoves )
-{
-   MoveSetType retMoveSet = { };
-   if ( (numMoves < 0 && numMoves > MAX_MOVES) )
-   {  
-      printf("Number of moves must be between 0 and %d\n", MAX_MOVES);
-      return retMoveSet;
-   }
-   else if ( cube == nullptr )
-   {
-      printf("Cube must be initialized line(%d)\n", __LINE__);
-      return retMoveSet;
+      // Create new cube with new side length
+      cube = new Cube(sideLength);
    }
    else
    {
-      // call randomeFace on each face
-      for ( int i = 0; i < numMoves; i++ )
-      {
-         // Make a random move
-         MoveType randMove = 
-         { 
-            (OrientationType) (rand() % MAX_ORIENTATION),
-            (RotationType)    (rand() % MAX_ROATATION)
-         };
-
-         // Move the cube
-         move(randMove, cube);
-
-         // Save randome move to a set
-         retMoveSet.moves[i] = randMove;
-         retMoveSet.numMoves++;
-      }
-      return retMoveSet;
+      // keep current configuration
    }
+   
 }
 
-MoveSetType CubeManager::solveCube( RubiksAlgorithmInterface algo )
+void CubeManager::SetSquare(OrientationType orientation, SquareType square, int row, int col)
 {
-   MoveSetType retMoveSet = { };
-
-  retMoveSet = algo.solve(cube);
-
-   return retMoveSet;
+   cube->setSquare(orientation, square, row, col);
 }
-

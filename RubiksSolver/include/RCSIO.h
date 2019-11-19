@@ -5,6 +5,7 @@
 #include <string>
 #include <rapidjson/document.h>
 #include "Cube.h"
+#include "CubeManager.h"
 
 
 class RCSIO
@@ -25,7 +26,7 @@ void readCubeFace(const rapidjson::Value&,
 void readCubeAllFaces(rapidjson::Document&);
 void readCubeAlgorithm(rapidjson::Document&);
 
-std::function<void(int)> Callback;
-Cube* cube;
-unsigned int cubeSideLength;
+CubeManager                 cubeManager;
+std::function<void(int)>    Callback;
+unsigned int                cubeSideLength;
 };

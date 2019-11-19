@@ -5,20 +5,25 @@ CPPFLAGS             = $(OPT_FLAGS) $(NO_LINKER_FLAGS) $(STANDARD_FLAGS) \
                        $(WARN_AS_ERRORS_FLAGS) $(DEBUG_FLAGS)
 
 VPATH =	src \
-			src/CubeTypes
+		src/CubeTypes \
+		Algorithm/3x3
+		
 
 # Source files, headers, etc.:
 INCLUDES =	-Iinclude \
-				-Iinclude/CubeTypes \
-				-Ithird_party
+			-Iinclude/CubeTypes \
+			-Ithird_party \
+			-IAlgorithms/include
 
-SRCS =	./src/RCSIO.cpp \
-			./src/CubeTypes/CubeFace.cpp \
-			./src/CubeTypes/Cube.cpp
+SRCS =	./src/CubeManager.cpp \
+		./src/RCSIO.cpp \
+		./src/CubeTypes/CubeFace.cpp \
+		./src/CubeTypes/Cube.cpp
 
-OBJS =	RCSIO.o \
-			CubeFace.o \
-			Cube.o
+OBJS =	CubeManager.o \
+		RCSIO.o \
+		CubeFace.o \
+		Cube.o
 
 LIB_DIR = ./lib
 MAIN = libRubiksCubeSolver.a # static library

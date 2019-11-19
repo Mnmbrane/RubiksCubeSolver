@@ -1,18 +1,21 @@
 #include "RCSIO.h"
-#include "Common.h"
 #include <rapidjson/istreamwrapper.h>
 
 RCSIO::RCSIO(std::function<void(int)> inCallback) :
+   cubeManager(),
    Callback(inCallback),
-   cubeSideLength(SIDE_LENGTH)
+   cubeSideLength(DEFAULT_SIDE_LENGTH)
 {
    Callback(3);
 }
 
 RCSIO::~RCSIO()
+{;
+}
+
+void RCSIO::solveCube()
 {
-   delete cube;
-   cube = nullptr;
+
 }
 
 SquareType RCSIO::getSquareFromString(std::string squareString)
@@ -82,10 +85,10 @@ void RCSIO::readCubeFace(const rapidjson::Value& allFaceConfig,
       // 6, 7, 8 row 2
       int row = i / cubeSideLength;
       int col = i % cubeSideLength;
-      cube->setSquare(orientation,
-                      getSquareFromString(faceConfig[i].GetString()),
-                      row,
-                      col);
+      cubeManager.SetSquare(orientation,
+                            getSquareFromString(faceConfig[i].GetString()),
+                            row,
+                            col);
    }
 }
 
@@ -125,16 +128,10 @@ void RCSIO::readCubeConfigJson(std::ifstream& configJson)
    // Read Cube Side Length
    readCubeSideLength(configDoc);
 
-   // Create new cube
-   cube = new Cube(cubeSideLength);
-
    // Read Cube Config
    readCubeAllFaces(configDoc);
 
    // Read Algorithm
    readCubeAlgorithm(configDoc);
-
-   // Solve
-
 }
 

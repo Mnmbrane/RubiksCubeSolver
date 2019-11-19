@@ -76,5 +76,6 @@
    "gtest-adapter.debugConfig": [
       "gcc build and debug active file"
    ],
-   "gtest-adapter.supportLocation": true
+   "gtest-adapter.supportLocation": true,
+   "C_Cpp.errorSquiggles": "Disabled"
 }

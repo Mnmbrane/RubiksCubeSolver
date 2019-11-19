@@ -1,29 +1,19 @@
 #pragma once
-#include "Common.h"
-#include "RubiksAlgorithmInterface.h"
+
+#include "CubeTypes/Cube.h"
+
+static const int DEFAULT_SIDE_LENGTH = 3;
 
 class CubeManager
 {
 public:
    CubeManager();
    ~CubeManager();
-
-   // Mix up the cube
-   MoveSetType mixCube(int);
-
-   // Solve Cube
-   MoveSetType solveCube(RubiksAlgorithmInterface);
-
-   // Get Cube
-   CubeType getCube();
-
+   
+   void SetSideLength(int);
+   void SetSquare(OrientationType, SquareType, int, int);
 
 private:
-
-   void assignFaceColor(SquareType, OrientationType);
-
-   CubeType cube;
-
-   MoveManager moveManager;
+   Cube* cube;
 };
 
