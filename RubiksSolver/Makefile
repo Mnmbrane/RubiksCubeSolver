@@ -5,40 +5,39 @@ CPPFLAGS             = $(OPT_FLAGS) $(NO_LINKER_FLAGS) $(STANDARD_FLAGS) \
                        $(WARN_AS_ERRORS_FLAGS) $(DEBUG_FLAGS)
 
 VPATH =	src \
-		src/CubeTypes \
-		Algorithm/3x3
-		
+			src/CubeTypes \
+			Algorithm/3x3
 
 # Source files, headers, etc.:
 INCLUDES =	-Iinclude \
-			-Iinclude/CubeTypes \
-			-Ithird_party \
-			-IAlgorithms/include
+				-Iinclude/CubeTypes \
+				-Ithird_party \
+				-IAlgorithms/include
 
-SRCS =	./src/CubeManager.cpp \
-		./src/RCSIO.cpp \
-		./src/CubeTypes/CubeFace.cpp \
-		./src/CubeTypes/Cube.cpp
+SRCS =	CubeManager.cpp \
+			RCSIO.cpp \
+			CubeFace.cpp \
+			Cube.cpp
 
-OBJS =	CubeManager.o \
-		RCSIO.o \
-		CubeFace.o \
-		Cube.o
+OBJS := $(SRCS:%.cpp=%.o)
 
-LIB_DIR = ./lib
-MAIN = libRubiksCubeSolver.a # static library
+BIN_DIR := bin
+LIB_DIR := lib
+
+LIB = libRubiksCubeSolver.a # static library
 
 .PHONY: all
-all: $(MAIN)
-	mv $(MAIN) $(LIB_DIR)/$(MAIN)
-	rm -rf *.o
+all: $(LIB_DIR)/$(LIB)
 
-$(MAIN): $(OBJS)
-	ar -r $(MAIN) $(OBJS)
+$(LIB_DIR)/$(LIB): $(OBJS)
+	mkdir -p '$(@D)'
+	ar -r $(LIB_DIR)/$(LIB) $(OBJS)
 
-.cpp.o:
-	$(CXX) $(CPPFLAGS) $(INCLUDES) -c $< -o $@
+%.o: %.cpp
+	mkdir -p '$(@D)'
+	$(CXX) $(CPPFLAGS) $(INCLUDES)  -c $< -o $@
+
 
 .PHONY: clean
 clean:
-	rm -rf $(LIB_DIR)/*.a *.o
+	rm -rf *.a *.o

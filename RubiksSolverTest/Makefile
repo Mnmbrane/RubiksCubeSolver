@@ -30,6 +30,8 @@ testAll: $(OBJS)
 .PHONY: all
 all: $(OBJS)
 
+$(OBJS): ./../$(PROJECT)/lib/libRubiksCubeSolver.a
+
 .cpp.o:
 	$(CXX) $(CPPFLAGS) $(INCLUDES) $< -o $@ $(LIB_DIR) $(LIBS)
 
